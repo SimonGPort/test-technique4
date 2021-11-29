@@ -21,8 +21,21 @@ export const ValidateCompagny = (compagny) => {
   }
 };
 
+export const ValidateHandleError = (value, type) => {
+  switch (type) {
+    case "name":
+      return ValidateName(value);
+      break;
+    case "compagny":
+      return ValidateCompagny(value);
+      break;
+    case "email":
+      return ValidateEmail(value);
+      break;
+  }
+};
+
 export const ValidateError = (value) => {
-  debugger;
   let error = { name: false, compagny: false, email: false };
   let success = true;
 

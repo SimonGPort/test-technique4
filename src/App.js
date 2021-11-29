@@ -6,6 +6,8 @@ import { useState } from "react";
 import { ValidateError } from "./utils/functions";
 
 function App() {
+  const [page, setPage] = useState(1);
+
   const [value, setValue] = useState({
     name: "",
     compagny: "",
@@ -32,53 +34,72 @@ function App() {
       email: "",
       checkbox: false,
     });
+    setError({
+      name: false,
+      compagny: false,
+      email: false,
+    });
   };
 
   const verifyBeforeSubmit = () => {
     const tempError = ValidateError(value);
     if (tempError.success) {
-      alert("POST ACTION");
+      setPage(2);
     } else {
       setError(tempError.error);
     }
   };
 
+  const handleError = (value, type) => {
+    const tempError = { ...error };
+    tempError[type] = value;
+    setError(tempError);
+  };
+
   return (
     <div className="App">
-      <div className="content">
-        <h1>Subscribe</h1>
-        <h4>sign up with your email address to receive news and updates.</h4>
+      {page === 1 && (
+        <div className="content">
+          <h1>Subscribe</h1>
+          <h4>sign up to receive news and updates.</h4>
 
-        <div className="input-container">
-          <Input
-            error={error.name}
-            value={value.name}
-            placeholder={"Name"}
-            handleChange={handleChange}
-            type={"name"}
-          />
-          <Input
-            error={error.compagny}
-            value={value.compagny}
-            placeholder={"Compagny"}
-            handleChange={handleChange}
-            type={"compagny"}
-          />
-          <Input
-            error={error.email}
-            value={value.email}
-            placeholder={"Email"}
-            handleChange={handleChange}
-            type={"email"}
-          />
-        </div>
+          <div className="input-container">
+            <Input
+              error={error.name}
+              value={value.name}
+              placeholder={"Name"}
+              handleChange={handleChange}
+              type={"name"}
+              handleError={handleError}
+            />
+            <Input
+              error={error.compagny}
+              value={value.compagny}
+              placeholder={"Compagny"}
+              handleChange={handleChange}
+              type={"compagny"}
+              handleError={handleError}
+            />
+            <Input
+              error={error.email}
+              value={value.email}
+              placeholder={"Email"}
+              handleChange={handleChange}
+              type={"email"}
+              handleError={handleError}
+            />
+          </div>
 
-        <Checkbox value={value.checkbox} handleChange={handleChange} />
-        <div className="button-container">
-          <Button text={"Reset"} handleClick={handleReset} />
-          <Button text={"Submit"} handleClick={verifyBeforeSubmit} />
+          <Checkbox value={value.checkbox} handleChange={handleChange} />
+          <div className="button-container">
+            <Button text={"Reset"} handleClick={handleReset} />
+            <Button text={"Submit"} handleClick={verifyBeforeSubmit} />
+          </div>
         </div>
-      </div>
+      )}
+      {page === 2 && (
+        <div className="confirmation-page">successfully subscribed</div>
+      )}
     </div>
   );
 }

@@ -23,6 +23,14 @@ body {
   animation-play-state: paused;
 }
 
+.confirmation-page {
+  border: solid black 2px;
+  background-color: #43b4c7;
+  padding: 20px;
+  display: inline-block;
+  margin-top: 60px;
+}
+
 .input-style {
   height: 40px;
   margin: 0px 20px;
@@ -51,6 +59,16 @@ body {
 
 .checkbox-style {
   cursor: pointer;
+}
+
+.invalid-field {
+  position: absolute;
+  margin: 0px 0px 0px 20px;
+  color: red;
+}
+
+.input-container {
+  display: flex;
 }
 
 @keyframes floating {
