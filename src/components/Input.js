@@ -1,7 +1,16 @@
-function Input({ placeholder }) {
+import React from "react";
+
+function Input({ placeholder, handleChange, type, value }) {
   return (
     <>
-      <input className="input-style" placeholder={placeholder} />
+      <input
+        value={value}
+        className="input-style"
+        placeholder={placeholder}
+        onChange={(evt) => {
+          handleChange(evt.target.value, type);
+        }}
+      />
     </>
   );
 }

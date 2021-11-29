@@ -1,7 +1,14 @@
-function Button({ text }) {
+function Button({ text, handleClick }) {
   return (
     <>
-      <button className="button-style">{text}</button>
+      <button
+        className="button-style"
+        onClick={() => {
+          handleClick();
+        }}
+      >
+        {text}
+      </button>
     </>
   );
 }
