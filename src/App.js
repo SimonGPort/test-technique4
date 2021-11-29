@@ -1,9 +1,10 @@
 import "./App.css";
-import Input from "./components/Input";
-import Button from "./components/Button";
+
 import Checkbox from "./components/Checkbox";
 import { useState } from "react";
 import { ValidateError } from "./utils/functions";
+import InputContainer from "./components/InputContainer";
+import ButtonContainer from "./components/ButtonContainer";
 
 function App() {
   const [page, setPage] = useState(1);
@@ -63,38 +64,19 @@ function App() {
           <h1>Subscribe</h1>
           <h4>sign up to receive news and updates.</h4>
 
-          <div className="input-container">
-            <Input
-              error={error.name}
-              value={value.name}
-              placeholder={"Name"}
-              handleChange={handleChange}
-              type={"name"}
-              handleError={handleError}
-            />
-            <Input
-              error={error.compagny}
-              value={value.compagny}
-              placeholder={"Compagny"}
-              handleChange={handleChange}
-              type={"compagny"}
-              handleError={handleError}
-            />
-            <Input
-              error={error.email}
-              value={value.email}
-              placeholder={"Email"}
-              handleChange={handleChange}
-              type={"email"}
-              handleError={handleError}
-            />
-          </div>
+          <InputContainer
+            error={error}
+            value={value}
+            handleChange={handleChange}
+            handleError={handleError}
+          />
 
           <Checkbox value={value.checkbox} handleChange={handleChange} />
-          <div className="button-container">
-            <Button text={"Reset"} handleClick={handleReset} />
-            <Button text={"Submit"} handleClick={verifyBeforeSubmit} />
-          </div>
+
+          <ButtonContainer
+            handleReset={handleReset}
+            verifyBeforeSubmit={verifyBeforeSubmit}
+          />
         </div>
       )}
       {page === 2 && (
