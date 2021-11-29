@@ -1,7 +1,7 @@
-function Input() {
+function Input({ placeholder }) {
   return (
     <>
-      <input />
+      <input className="input-style" placeholder={placeholder} />
     </>
   );
 }

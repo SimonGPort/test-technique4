@@ -1,8 +1,9 @@
 function Checkbox() {
   return (
-    <>
-      <input type="checkbox" />
-    </>
+    <div className="checkbox-container">
+      <h5>subscribe to newsletter</h5>
+      <input type="checkbox" className="checkbox-style" />
+    </div>
   );
 }
 
